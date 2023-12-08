@@ -59,7 +59,7 @@ if st.button('Detection Result'):
     "SWALLOWING_DIFFICULTY": swallow,
     "CHEST_PAIN": chest
     }
-    res = re.post(f"https://lung-cancer-api.herokuapp.com/predict",json=values)
+    res = re.post(f"https://github.com/basit56700/Lung-Cancer-Detection/blob/main/Backend/app.py",json=values)
     json_str = json.dumps(res.json())
     resp = json.loads(json_str)
 
