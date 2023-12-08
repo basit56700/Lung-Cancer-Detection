@@ -1,6 +1,8 @@
 import streamlit as st
 import requests as re
 import json
+import random
+
 
 st.write("""# Lung Cancer Detection Web App""")
 
@@ -9,13 +11,7 @@ st.image("image.jpg")
 st.write("""
 ## About
 
-Lung cancer is a type of cancer that begins in the lungs and most often occurs in people who smoke. Two major types of lung cancer are non-small cell lung cancer and small cell lung cancer. Causes of lung cancer include smoking, second-hand smoke, exposure to certain toxins and family history. Symptoms include a cough (often with blood), chest pain, wheezing and weight loss. These symptoms often don't appear until the cancer is advanced. Treatments vary but may include surgery, chemotherapy, radiation therapy, targeted drug therapy and immunotherapy.
 
-**This Streamlit App utilizes a Machine Learning API in order to detect lung cancer in patients based on the following criteria: age, gender, blood pressure, smoke, coughing, allergies, fatigue etc.** 
-
-The notebook, processed dataset, model and documentation(dockerfiles, fastapi script, streamlit script) are available on my [GitHub.](https://github.com/Nneji123/Lung-Cancer-Prediction)        
-
-**Made by Ifeanyi Nneji**
 """)
 
 
@@ -59,8 +55,18 @@ if st.button('Detection Result'):
     "SWALLOWING_DIFFICULTY": swallow,
     "CHEST_PAIN": chest
     }
-    res = re.post(f"https://lung-cancer-api.herokuapp.com/predict",json=values)
-    json_str = json.dumps(res.json())
-    resp = json.loads(json_str)
+st.sidebar.header('User Input Features')
 
-    st.write(resp[0])
+gender = st.sidebar.number_input("GENDER: Enter 1 for Male and 0 for Female", key="gender_input", min_value=0, max_value=1)
+age = st.sidebar.slider("AGE: Enter your Age", key="age_input", min_value=1, max_value=100)
+# Add other input fields here with unique keys
+
+# Remove the button and directly generate a random result
+if st.sidebar.checkbox('Generate Random Result'):
+    random_result = random.randint(0, 1)
+    
+    result_text = "Positive" if random_result == 1 else "Negative"
+    alert_message = f"Detection Result: {result_text}"
+    
+    # Display the alert using JavaScript
+    st.write(f'<script>alert("{alert_message}")</script>', unsafe_allow_html=True)
