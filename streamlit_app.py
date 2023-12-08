@@ -59,7 +59,7 @@ if st.button('Detection Result'):
     "SWALLOWING_DIFFICULTY": swallow,
     "CHEST_PAIN": chest
     }
-    res = re.post(f"https://github.com/basit56700/Lung-Cancer-Detection/blob/main/Backend/app.py",json=values)
+    res = re.post(f"https://appapppy-mky6xq9sn8x2tnbbekqtrn.streamlit.app/predict",json=values)
     json_str = json.dumps(res.json())
     resp = json.loads(json_str)
 
