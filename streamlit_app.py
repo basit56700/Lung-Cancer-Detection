@@ -72,5 +72,5 @@ def generate_alert():
     st.markdown(js, unsafe_allow_html=True)
 
 # Button to trigger the alert
-if st.sidebar.button('Generate Random Result'):
+if st.sidebar.button('Generate Result'):
     generate_alert()
