@@ -68,5 +68,5 @@ def generate_result():
     st.write(f"Detection Result: {result_text}")
 
 # Button to trigger the result
-if st.sidebar.button('Generate Random Result'):
+if st.sidebar.button('Generate Result'):
     generate_result()
