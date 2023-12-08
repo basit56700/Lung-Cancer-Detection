@@ -61,12 +61,16 @@ gender = st.sidebar.number_input("GENDER: Enter 1 for Male and 0 for Female", ke
 age = st.sidebar.slider("AGE: Enter your Age", key="age_input", min_value=1, max_value=100)
 # Add other input fields here with unique keys
 
-# Remove the button and directly generate a random result
-if st.sidebar.checkbox('Generate Random Result'):
+# Function to generate and show the alert
+def generate_alert():
     random_result = random.randint(0, 1)
-    
     result_text = "Positive" if random_result == 1 else "Negative"
     alert_message = f"Detection Result: {result_text}"
     
-    # Display the alert using JavaScript
-    st.write(f'<script>alert("{alert_message}")</script>', unsafe_allow_html=True)
+    # JavaScript to display an alert box
+    js = f"""<script>alert("{alert_message}")</script>"""
+    st.markdown(js, unsafe_allow_html=True)
+
+# Button to trigger the alert
+if st.sidebar.button('Generate Random Result'):
+    generate_alert()
