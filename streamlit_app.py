@@ -59,7 +59,7 @@ st.sidebar.header('User Input Features')
 
 def count_selected_values():
     selected_values = [
-        gender, age, smoking, yellow_finger, anxiety, peer, chronic,
+        gender, smoking, yellow_finger, anxiety, peer, chronic,
         fatigue, allergy, wheezing, alcohol, coughing, breath, swallow, chest
     ]
     total_selected = sum(selected_values)
@@ -68,9 +68,9 @@ def count_selected_values():
 # Function to generate and display the result
 def generate_result():
     total_selected = count_selected_values()
-    result_text = "Positive" if total_selected > 6 else "Negative"
-    st.write(f"Detection Result: {result_text}")
+    # Exclude age from the condition
+    result_text = "Positive" if (total_selected - age) > 6 else "Negative"
+    st.sidebar.write(f"Detection Result: {result_text}")
 
-# Button to trigger the result
-if st.sidebar.button('Generate Result'):
-    generate_result()
+# Call generate_result function initially to display the initial result
+generate_result()
