@@ -57,20 +57,25 @@ if st.button('Detection Result'):
     }
 st.sidebar.header('User Input Features')
 
+# Define your input fields here...
+
+# Function to count selected values excluding 'age'
 def count_selected_values():
     selected_values = [
         gender, smoking, yellow_finger, anxiety, peer, chronic,
         fatigue, allergy, wheezing, alcohol, coughing, breath, swallow, chest
     ]
-    total_selected = sum(selected_values)
+    # Exclude 'age' from the total count
+    total_selected = sum(selected_values) - age
     return total_selected
 
 # Function to generate and display the result
 def generate_result():
     total_selected = count_selected_values()
-    # Exclude age from the condition
-    result_text = "Positive" if (total_selected - age) > 6 else "Negative"
+    # Check if total_selected (excluding age) is greater than 6
+    result_text = "Positive" if total_selected > 6 else "Negative"
     st.sidebar.write(f"Detection Result: {result_text}")
 
-# Call generate_result function initially to display the initial result
-generate_result()
+# Button to trigger the result
+if st.sidebar.button('Generate Result'):
+    generate_result()
