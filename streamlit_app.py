@@ -57,16 +57,22 @@ if st.button('Detection Result'):
     }
 st.sidebar.header('User Input Features')
 
-gender = st.sidebar.number_input("GENDER: Enter 1 for Male and 0 for Female", key="gender_input", min_value=0, max_value=1)
-age = st.sidebar.slider("AGE: Enter your Age", key="age_input", min_value=1, max_value=100)
-# Add other input fields here with unique keys
+def count_selected_values():
+    selected_values = [
+        gender, age, smoking, yellow_finger, anxiety, peer, chronic,
+        fatigue, allergy, wheezing, alcohol, coughing, breath, swallow, chest
+    ]
+    total_selected = sum(selected_values)
+    return total_selected
 
 # Function to generate and display the result
 def generate_result():
-    random_result = random.randint(0, 1)
-    result_text = "Positive" if random_result == 1 else "Negative"
+    total_selected = count_selected_values()
+    result_text = "Positive" if total_selected > 6 else "Negative"
     st.write(f"Detection Result: {result_text}")
 
 # Button to trigger the result
 if st.sidebar.button('Generate Result'):
+    generate_result()
+if st.sidebar.button('Detection Result'):
     generate_result()
