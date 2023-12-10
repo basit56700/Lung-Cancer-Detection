@@ -74,5 +74,3 @@ def generate_result():
 # Button to trigger the result
 if st.sidebar.button('Generate Result'):
     generate_result()
-if st.sidebar.button('Detection Result'):
-    generate_result()
