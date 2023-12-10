@@ -61,7 +61,7 @@ st.sidebar.header('User Input Features')
 # Function to count selected values
 def count_selected_values():
     selected_values = [
-        gender, age, smoking, yellow_finger, anxiety, peer, chronic,
+        gender, smoking, yellow_finger, anxiety, peer, chronic,
         fatigue, allergy, wheezing, alcohol, coughing, breath, swallow, chest
     ]
     total_selected = sum(selected_values)
